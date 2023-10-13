@@ -41,12 +41,12 @@ Point2D *getGenPts();
 Point2D *interpolate2D(Point2D *p1, Point2D *p2, Point2D *p3, double l, double posC);
 
 // 3-pt Bézier multi-point interpolation for point posC. Curve fitting l (0<l<1). Returns array of Point2D and assigns pointer calculated2DCurve to its address.
-Point2D *interpolate2DCurve(Point2D *p1, Point2D *p2, Point2D *p3, double l, double posC, int dataPts);
+Point2D *interpolate2DCurve(Point2D *p1, Point2D *p2, Point2D *p3, double l, int dataPts);
 
 // Generates array of 3 Point2D data structures. Returns the array and assigns pointer genPts to its starting address. 
 Point2D *genPointSet(double x1, double y1, double x2, double y2, double x3, double y3);
 
 // Writes 2-column csv file with specified x and y labels. 
-void writeCSV(FILE *filePtr, char *xLabel, char *yLabel, Point2D **pointArray, int pointArrayLength);
+void writeCSV(FILE *filePtr, char *xLabel, char *yLabel, Point2D *pointArray, int pointArrayLength);
 
 #endif

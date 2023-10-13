@@ -102,14 +102,14 @@ Point2D *interpolate2D(Point2D *p1, Point2D *p2, Point2D *p3, double l, double p
 }
 
 // 3-pt Bézier multi-point interpolation for point posC. Curve fitting l (0<l<1). Returns array of Point2D and assigns pointer calculated2DCurve to its address.
-Point2D *interpolate2DCurve(Point2D *p1, Point2D *p2, Point2D *p3, double l, double posC, int dataPts)
+Point2D *interpolate2DCurve(Point2D *p1, Point2D *p2, Point2D *p3, double l, int dataPts)
 {
   
     Point2D *arCurve = malloc(sizeof(Point2D) * dataPts);
 
     for (int i = 0; i < dataPts; i++)
     {
-        interpolate2D(p1, p2, p3, l, posC);
+        interpolate2D(p1, p2, p3, l, (double)(i+1.0)/dataPts);
         arCurve[i] = *calculated2D;
     }
 
@@ -136,13 +136,15 @@ Point2D *genPointSet(double x1, double y1, double x2, double y2, double x3, doub
 }
 
 // Writes 2-column csv file with specified x and y labels. 
-void writeCSV(FILE *filePtr, char *xLabel, char *yLabel, Point2D **pointArray, int pointArrayLength)
+void writeCSV(FILE *filePtr, char *xLabel, char *yLabel, Point2D *pointArray, int pointArrayLength)
 {
-    fprintf(filePtr, strcat(strcat(xLabel, ","), yLabel));
+    
+    fprintf(filePtr, "%s%s%s%s", xLabel, ",", yLabel, "\n");
 
     for (int i = 0; i < pointArrayLength; i++)
     {
-        fprintf(filePtr, "%f,%f", pointArray[i]->x, pointArray[i]->y);
+        fprintf(filePtr, "%f,%f\n", pointArray[i].x, pointArray[i].y);
+        
     }
 
     fclose(filePtr);
