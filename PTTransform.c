@@ -91,7 +91,7 @@ Point2D *interpolate2D(Point2D *p1, Point2D *p2, Point2D *p3, double l, double p
     yMid /= (2.0 * (1.0 - l) * l);
 
     // Calculate point at posC on the curve
-    Point2D *fnlPt = malloc(sizeof(struct Point2D));
+    Point2D *fnlPt = malloc(sizeof(Point2D));
 
     fnlPt->x = ((1.0 - posC) * (1.0 - posC) * *x1) + (2.0 * (1.0 - posC) * posC * xMid) + (posC * posC * *x3);
     fnlPt->y = ((1.0 - posC) * (1.0 - posC) * *y1) + (2.0 * (1.0 - posC) * posC * yMid) + (posC * posC * *y3);
